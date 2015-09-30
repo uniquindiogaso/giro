@@ -161,10 +161,11 @@ public class GiroItalia {
 
     /**
      * Buscar equipo que contenga la mayor cantidad de ciclistas asignados
+     *
      * @return Objeto de Tipo Equipo
      */
     public Equipo buscaEquipoMasCiclistas() {
-        
+
         Equipo e = null;
         int max = 0;
         for (Equipo[] equipoI : equipos) {
@@ -181,8 +182,14 @@ public class GiroItalia {
         return e;
     }
 
+    public Ciclista ciclistaMejorTiempo() {
+
+        return null;
+    }
+
     /**
      * Intercambiar Ciclita de dos Equipos
+     *
      * @param cod1 Codigo unico del equipo 1
      * @param cod2 Codigo unico del equipo 2
      * @return true si se realizo el intercambio | false si no se logro realizar
@@ -201,5 +208,52 @@ public class GiroItalia {
 
         return true;
 
+    }
+
+    /**
+     * Encuentra el ciclista con el mejor tiempo de los equipos del giro
+     * @return objeto Ciclista o null si todos los equipos estan vacios
+     */
+    public Ciclista liderGiro() {
+
+        Ciclista c = null;
+        double mejor = Double.MAX_VALUE;
+
+        for (int i = 0; i < equipos.length; i++) {
+            for (int j = 0; j < equipos[i].length; j++) {
+
+                if (equipos[i][j] != null) {
+                    double tiempo = equipos[i][j].liderEquipo().getTiempo();
+                    if (tiempo < mejor) {
+                        mejor = tiempo;
+                        c = equipos[i][j].liderEquipo();
+                    }
+                }
+            }
+        }
+        return c;
+    }
+    
+    /**
+     * Retorna el tiempo actualizado al adicionar el tiempo extra al ciclista buscado
+     * @param tiempo tiempo a adicionar
+     * @param numCiclista numero de camiseta del ciclista a buscar
+     * @return tiempo actualizado del ciclista de lo contrario retorna -1 si no encontro el ciclista en ningun equipo
+     */
+    public double adicionarTiempoCiclista(double tiempo , int numCiclista){
+        for (int i = 0; i < equipos.length; i++) {
+            for (int j = 0; j < equipos[i].length; j++) {
+                if(equipos[i][j] != null){
+                    Ciclista c = equipos[i][j].buscarPorNumero(numCiclista);
+                    if(c != null){
+                        c.setTiempo( c.getTiempo() + tiempo );                        
+                        return c.getTiempo();
+                    }
+                }
+            }
+            
+        }
+        
+        return -1;
     }
 }

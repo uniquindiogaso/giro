@@ -130,5 +130,38 @@ public class Equipo {
         }        
         return conteo;
     }
+    
+    /**
+     * Ubica el mejor Ciclista del Equipo en funcion del mejor tiempo
+     * @return Objeto ciclista que tiene el mejor tiempo
+     */
+    public Ciclista liderEquipo(){
+        Ciclista c = null;
+        double mejor = Double.MAX_VALUE;
+        for (int i = 0; i < ciclistas.length; i++) {
+            if(ciclistas[i] != null){
+                double tiempo = ciclistas[i].getTiempo();
+                if(tiempo > 0 && tiempo < mejor){
+                    mejor = tiempo;
+                    c = ciclistas[i];
+                }
+            }
+        }
+        return c;
+    }
+    
+    /**
+     * Busca el ciclista de acuerdo al numer de camiseta
+     * @param num numero de camiseta 
+     * @return Objeto ciclita si es encontrado o de lo contrario null si el ciclista no esta en el equipo o no es encontrado
+     */
+    public Ciclista buscarPorNumero(int num){
+        for (int i = 0; i < ciclistas.length; i++) {
+            if(ciclistas[i] != null && ciclistas[i].getNum() == num ){
+                return ciclistas[i];
+            }
+        }
+        return null;
+    }
 
 }

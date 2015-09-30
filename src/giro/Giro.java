@@ -23,17 +23,17 @@ public class Giro {
         
         Equipo e1 = new Equipo("claro","0", "1", 1983);
         e1.agregarCiclista(new Ciclista("Jose David", "1", 19, 999, 1));
-        e1.agregarCiclista(new Ciclista("Pedro", "2", 19, 999, 1));
-        e1.agregarCiclista(new Ciclista("Juaquin", "3", 19, 999, 1));
-        e1.agregarCiclista(new Ciclista("Juaquin", "4", 19, 999, 1));
-        e1.agregarCiclista(new Ciclista("Juaquin", "5", 19, 999, 1));
+        e1.agregarCiclista(new Ciclista("Pedro", "2", 19, 999, 2));
+        e1.agregarCiclista(new Ciclista("jjj", "3", 19, 30, 3));
+        e1.agregarCiclista(new Ciclista("aaa", "4", 19, 999, 4));
+        e1.agregarCiclista(new Ciclista("aaa", "5", 19, 69, 5));
         
           
-        Equipo e2 = new Equipo("movistar","1","2",1578);
-        e2.agregarCiclista(new Ciclista("Pepe", "1", 19, 999, 1));
-        e2.agregarCiclista(new Ciclista("Ricardiño", "2", 19, 999, 1));
-        e2.agregarCiclista(new Ciclista("aa", "3", 19, 999, 1));
-        e2.agregarCiclista(new Ciclista("bb", "4", 19, 999, 1));
+        Equipo e2 = new Equipo("movistar","1","6",1578);
+        e2.agregarCiclista(new Ciclista("Pepe", "7", 19, 999, 6));
+        e2.agregarCiclista(new Ciclista("Ricardiño", "8", 19, 21, 7));
+        e2.agregarCiclista(new Ciclista("aa", "9", 19, 77, 8));
+        e2.agregarCiclista(new Ciclista("bb", "10", 19, 999, 9));
         
         
         giro.agregarEquipo(e1);
@@ -57,7 +57,8 @@ public class Giro {
              System.out.println();
          }
          
-         System.out.println("El equipo con mas ciclistas es : "+giro.buscaEquipoMasCiclistas().getNombre());
+         System.out.println(giro.adicionarTiempoCiclista(1, 6));
+         
          
     }
     
