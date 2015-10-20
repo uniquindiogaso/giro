@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
+
+import java.util.ArrayList;
 
 /**
  * Esta clase es la encargada de manejar las propiedades de los equipos de
@@ -18,14 +16,14 @@ public class Equipo {
     private String codigo;
     private String anio;
     private double tienpo;
-    private Ciclista[] ciclistas;
+    private ArrayList<Ciclista> ciclistas;
 
     public Equipo(String nombre, String codigo, String anio, double tienpo) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.anio = anio;
         this.tienpo = tienpo;
-        ciclistas = new Ciclista[9];
+        ciclistas = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -60,13 +58,16 @@ public class Equipo {
         this.tienpo = tienpo;
     }
 
-    public Ciclista[] getCiclistas() {
+    public ArrayList<Ciclista> getCiclistas() {
         return ciclistas;
     }
 
-    public void setCiclistas(Ciclista[] ciclistas) {
+    public void setCiclistas(ArrayList<Ciclista> ciclistas) {
         this.ciclistas = ciclistas;
     }
+
+
+    
 
     /**
      * Identificar posicion de ubicacion ciclista
@@ -75,8 +76,8 @@ public class Equipo {
      * @return posicion si lo encuentra , -1 si no esta.
      */
     public int buscarCiclista(String id) {
-        for (int i = 0; i < ciclistas.length; i++) {
-            if (ciclistas[i] != null && ciclistas[i].getId().equals(id)) {
+        for (int i = 0; i < ciclistas.size(); i++) {
+            if (ciclistas.get(i).getId().equals(id)) {
                 return i;
             }
         }
@@ -94,10 +95,9 @@ public class Equipo {
             return false;
         }
 
-        for (int i = 0; i < ciclistas.length; i++) {
-            if (ciclistas[i] == null) {
-                ciclistas[i] = c;
-                return true;
+        for (int i = 0; i < ciclistas.size(); i++) {
+            if (ciclistas.get(i) == null) {                
+                return ciclistas.add(c);
             }
         }
 
@@ -111,7 +111,7 @@ public class Equipo {
     public boolean eliminarCiclista(String id) {
         int posCiclista = buscarCiclista(id);
         if (posCiclista != -1) {
-            ciclistas[posCiclista] = null;
+            ciclistas.remove(posCiclista);
             return true;
         }
         return false;
@@ -123,8 +123,8 @@ public class Equipo {
  */    
     public int contarCiclistas(){
         int conteo = 0;
-        for (int i = 0; i < ciclistas.length; i++) {
-            if(ciclistas[i] != null){
+        for (int i = 0; i < ciclistas.size(); i++) {
+            if(ciclistas.get(i) != null){
                 conteo++;
             }
         }        
@@ -138,12 +138,12 @@ public class Equipo {
     public Ciclista liderEquipo(){
         Ciclista c = null;
         double mejor = Double.MAX_VALUE;
-        for (int i = 0; i < ciclistas.length; i++) {
-            if(ciclistas[i] != null){
-                double tiempo = ciclistas[i].getTiempo();
-                if(tiempo > 0 && tiempo < mejor){
+        for (Ciclista ciclista : ciclistas) {
+            if (ciclista != null) {
+                double tiempo = ciclista.getTiempo();
+                if (tiempo > 0 && tiempo < mejor) {
                     mejor = tiempo;
-                    c = ciclistas[i];
+                    c = ciclista;
                 }
             }
         }
@@ -156,9 +156,9 @@ public class Equipo {
      * @return Objeto ciclita si es encontrado o de lo contrario null si el ciclista no esta en el equipo o no es encontrado
      */
     public Ciclista buscarPorNumero(int num){
-        for (int i = 0; i < ciclistas.length; i++) {
-            if(ciclistas[i] != null && ciclistas[i].getNum() == num ){
-                return ciclistas[i];
+        for (Ciclista ciclista : ciclistas) {
+            if (ciclista.getNum() == num) {
+                return ciclista;
             }
         }
         return null;
