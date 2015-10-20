@@ -5,6 +5,7 @@
  */
 package giro;
 
+import gui.Interfaz;
 import java.util.ArrayList;
 import logica.Ciclista;
 import logica.Equipo;
@@ -20,7 +21,8 @@ public class Giro {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        Interfaz interfaz = new Interfaz();
+        interfaz.setVisible(true);
     }
 
     /**
