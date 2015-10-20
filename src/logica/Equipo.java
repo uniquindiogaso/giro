@@ -18,6 +18,9 @@ public class Equipo {
     private double tienpo;
     private ArrayList<Ciclista> ciclistas;
 
+    public Equipo() {
+    }
+    
     public Equipo(String nombre, String codigo, String anio, double tienpo) {
         this.nombre = nombre;
         this.codigo = codigo;
